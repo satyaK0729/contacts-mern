@@ -1,20 +1,16 @@
-const express=require('express');
+const express =require("express");
+const errorHandler = require("./middleware/errorHandler");
 const app=express();
-const dotenv=require('dotenv').config();
+const dotenv=require("dotenv").config();
 
-const PORT=process.env.PORT || 3000;
+const PORT= process.env.PORT || 3000;
 
-app.get("/api",(req,res)=>{
-    res.json({message:"Hello this is the API"});
+app.use(express.json());
+
+app.use("/api/contacts",require("./routes/contactRoutes"))
+app.use(errorHandler)
+app.listen(PORT,()=>{
+    console.log("server connected to the port",PORT);
 })
-app.get("/api/contacts",(req,res)=>{
-    res.json({message:"All the contacts"});
-})
 
-app.listen(PORT,(error)=>{
-    try{
-        console.log(`Server is running on port ${PORT}`);
-    }catch(error){
-        console.error('Error starting the server:', error);
-    }
-});
+
