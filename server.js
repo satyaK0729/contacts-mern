@@ -1,16 +1,13 @@
-const express =require("express");
-const errorHandler = require("./middleware/errorHandler");
+const express=require('express');
 const app=express();
-const dotenv=require("dotenv").config();
+const dotenv=require("dotenv").config()
 
-const PORT= process.env.PORT || 3000;
+const PORT= process.env.PORT || 2000;
 
-app.use(express.json());
+app.use(express.json())
 
-app.use("/api/contacts",require("./routes/contactRoutes"))
-app.use(errorHandler)
+app.use("api/contacts",require("./routes/contactRoutes"))
+
 app.listen(PORT,()=>{
-    console.log("server connected to the port",PORT);
+    console.log("Server conneted to the port: ",PORT)
 })
-
-
